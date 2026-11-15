@@ -174,6 +174,10 @@
 
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRnqGO2_Id31idT_N5MwcDSUMjcfkeeo1UD9C6EUABUyKZ5Ct0iUTZZ9QR6O_JPX8OOqMcs6qYe5Y2v/pub?output=csv";
+        
+        // رابط مستودع GitHub الأساسي للصور (مدمج تلقائياً مع أسماء الملفات في الجدول)
+        const GITHUB_IMAGES_BASE_URL = "https://raw.githubusercontent.com/dfoomtab-afk/stk-values/main/";
+
         let allData = [];
         let currentCategory = 'all';
 
@@ -210,10 +214,18 @@
                 row.push(currentVal);
 
                 if (row.length >= 4) {
+                    let imageName = row[2].replace(/"/g, '').trim();
+                    let imageUrl = imageName;
+                    
+                    // إذا كان المدخل في العمود C عبارة عن اسم ملف فقط (بدون http)، يتم تركيب الرابط الكامل له تلقائياً
+                    if (imageName && !imageName.startsWith('http')) {
+                        imageUrl = GITHUB_IMAGES_BASE_URL + imageName;
+                    }
+
                     allData.push({
                         name: row[0].replace(/"/g, '').trim(),
                         value: row[1].replace(/"/g, '').trim(),
-                        image: row[2].replace(/"/g, '').trim(),
+                        image: imageUrl,
                         category: row[3].replace(/"/g, '').trim().toLowerCase()
                     });
                 }
