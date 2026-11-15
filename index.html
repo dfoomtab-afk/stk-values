@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S-ROBLOX VALUES | قيم Survive the Killer!</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --card-bg: #141419;
+            --accent-red: #e50914;
+            --accent-glow: rgba(229, 9, 20, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #9ca3af;
+            --border-color: #262630;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            background-image: radial-gradient(circle at top center, #2a080c 0%, var(--bg-dark) 60%);
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 25px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, rgba(229,9,20,0.12) 0%, rgba(10,10,12,0) 100%);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        header h1 span {
+            color: var(--accent-red);
+        }
+
+        header p {
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-size: 0.95rem;
+        }
+
+        .controls {
+            max-width: 1100px;
+            margin: 25px auto 15px;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-btn {
+            background-color: var(--card-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+        }
+
+        .cat-btn:hover {
+            border-color: var(--accent-red);
+            color: var(--text-main);
+        }
+
+        .cat-btn.active {
+            background-color: var(--accent-red);
+            color: #fff;
+            border-color: var(--accent-red);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .grid {
+            max-width: 1100px;
+            margin: 20px auto 50px;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 15px 12px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-red);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .card img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 5px;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-value {
+            background: rgba(229, 9, 20, 0.15);
+            color: #ff4d57;
+            border: 1px solid rgba(229, 9, 20, 0.4);
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        .status-msg {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>S-ROBLOX <span>VALUES</span></h1>
+        <p>قائمة الأسعار الرسمية والمحدثة للعبة Survive the Killer!</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 ابحث عن اسم السلاح أو القاتل...">
+        
+        <div class="categories">
+            <button class="cat-btn active" data-category="all">🔥 الكل</button>
+            <button class="cat-btn" data-category="knives">🗡️ السكاكين</button>
+            <button class="cat-btn" data-category="killers">🎭 القتلة</button>
+            <button class="cat-btn" data-category="emotes">💃 التعبيرات</button>
+            <button class="cat-btn" data-category="crates">📦 الصناديق</button>
+        </div>
+    </div>
+
+    <div class="grid" id="itemsGrid">
+        <div class="status-msg">جاري تحميل الأسعار المحدثة...</div>
+    </div>
+
+    <script>
+        const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRnqGO2_Id31idT_N5MwcDSUMjcfkeeo1UD9C6EUABUyKZ5Ct0iUTZZ9QR6O_JPX8OOqMcs6qYe5Y2v/pub?output=csv";
+        let allItems = [];
+        let currentCategory = "all";
+
+        async function fetchItems() {
+            try {
+                const response = await fetch(CSV_URL);
+                const data = await response.text();
+                allItems = parseCSV(data);
+                renderItems();
+            } catch (error) {
+                document.getElementById("itemsGrid").innerHTML = '<div class="status-msg">حدث خطأ أثناء تحميل البيانات، تأكد من الاتصال بالإنترنت.</div>';
+            }
+        }
+
+        function parseCSV(csvText) {
+            const lines = csvText.trim().split("\n");
+            const items = [];
+            for (let i = 1; i < lines.length; i++) {
+                const row = lines[i].split(",");
+                if (row.length >= 2) {
+                    items.push({
+                        name: row[0]?.trim() || "بدون اسم",
+                        value: row[1]?.trim() || "0",
+                        image: row[2]?.trim() || "https://via.placeholder.com/110/141419/ffffff?text=STK",
+                        category: (row[3]?.trim() || "all").toLowerCase()
+                    });
+                }
+            }
+            return items;
+        }
+
+        function renderItems() {
+            const grid = document.getElementById("itemsGrid");
+            const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+
+            const filtered = allItems.filter(item => {
+                const matchesCat = currentCategory === "all" || item.category === currentCategory;
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery);
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="status-msg">لا توجد عناصر مطابقة لبحثك حالياً.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="card">
+                    <img src="${item.image}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/110/141419/e50914?text=No+Image'">
+                    <div class="card-title">${item.name}</div>
+                    <div class="card-value">💎 ${item.value}</div>
+                </div>
+            `).join("");
+        }
+
+        document.querySelectorAll(".cat-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentCategory = btn.getAttribute("data-category");
+                renderItems();
+            });
+        });
+
+        document.getElementById("searchInput").addEventListener("input", renderItems);
+
+        fetchItems();
+    </script>
+</body>
+</html>
