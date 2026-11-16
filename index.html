@@ -96,6 +96,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%; /* ضمان تساوی الارتفاعات */
             transition: transform 0.2s;
         }
         .item-card:hover {
@@ -104,7 +105,7 @@
         }
         .item-img-container {
             width: 100%;
-            aspect-ratio: 1;
+            height: 105px; /* تثبيت ارتفاع مربع الصورة لجميع الكروت */
             background: #1a1a26;
             border-radius: 8px;
             overflow: hidden;
@@ -112,6 +113,7 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 6px;
+            flex-shrink: 0;
         }
         .item-img-container img {
             width: 100%;
@@ -144,6 +146,7 @@
         }
         @media (max-width: 480px) {
             header h1 { font-size: 1.5rem; }
+            .item-img-container { height: 90px; } /* تصغير الارتفاع قليلاً لتناسب الشاشات الصغيرة بدقة */
             .item-name { font-size: 0.7rem; }
             .item-value { font-size: 0.75rem; }
         }
@@ -174,8 +177,6 @@
 
     <script>
         const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRnqGO2_Id31idT_N5MwcDSUMjcfkeeo1UD9C6EUABUyKZ5Ct0iUTZZ9QR6O_JPX8OOqMcs6qYe5Y2v/pub?output=csv";
-        
-        // رابط مستودع GitHub الأساسي للصور (مدمج تلقائياً مع أسماء الملفات في الجدول)
         const GITHUB_IMAGES_BASE_URL = "https://raw.githubusercontent.com/dfoomtab-afk/stk-values/main/";
 
         let allData = [];
@@ -217,7 +218,6 @@
                     let imageName = row[2].replace(/"/g, '').trim();
                     let imageUrl = imageName;
                     
-                    // إذا كان المدخل في العمود C عبارة عن اسم ملف فقط (بدون http)، يتم تركيب الرابط الكامل له تلقائياً
                     if (imageName && !imageName.startsWith('http')) {
                         imageUrl = GITHUB_IMAGES_BASE_URL + imageName;
                     }
