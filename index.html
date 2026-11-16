@@ -96,7 +96,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%; /* ضمان تساوی الارتفاعات */
+            height: 100%;
             transition: transform 0.2s;
         }
         .item-card:hover {
@@ -105,7 +105,7 @@
         }
         .item-img-container {
             width: 100%;
-            height: 105px; /* تثبيت ارتفاع مربع الصورة لجميع الكروت */
+            height: 105px;
             background: #1a1a26;
             border-radius: 8px;
             overflow: hidden;
@@ -146,7 +146,7 @@
         }
         @media (max-width: 480px) {
             header h1 { font-size: 1.5rem; }
-            .item-img-container { height: 90px; } /* تصغير الارتفاع قليلاً لتناسب الشاشات الصغيرة بدقة */
+            .item-img-container { height: 90px; }
             .item-name { font-size: 0.7rem; }
             .item-value { font-size: 0.75rem; }
         }
@@ -163,12 +163,13 @@
         <input type="text" id="searchBox" placeholder="ابحث عن اسم السلاح أو القاتل..." oninput="filterItems()">
     </div>
 
+    <!-- أزرار التصنيفات الجديدة بدون ملصقات وبحسب طلبك -->
     <div class="categories">
-        <button class="cat-btn active" onclick="setCategory('all', this)">الكل 🔥</button>
-        <button class="cat-btn" onclick="setCategory('knives', this)">السكاكين 🗡️</button>
-        <button class="cat-btn" onclick="setCategory('killers', this)">القتلة 🔪</button>
-        <button class="cat-btn" onclick="setCategory('emotes', this)">الإيموتس 🎭</button>
-        <button class="cat-btn" onclick="setCategory('crates', this)">الصناديق 📦</button>
+        <button class="cat-btn active" onclick="setCategory('all', this)">الكل</button>
+        <button class="cat-btn" onclick="setCategory('knives', this)">السكاكين</button>
+        <button class="cat-btn" onclick="setCategory('killers', this)">القتلة</button>
+        <button class="cat-btn" onclick="setCategory('cabins', this)">كابينس</button>
+        <button class="cat-btn" onclick="setCategory('crates', this)">الصناديق</button>
     </div>
 
     <div class="items-grid" id="itemsContainer">
